@@ -1,0 +1,42 @@
+{
+ "nebius": {
+  "base_url": "https://api.tokenfactory.nebius.com/v1/",
+  "auth": {"env": "NEBIUS_API_KEY"},
+  "key_prefixes": [],
+  "transport": "chat_continue", "top_k": 20,
+  "extra": {"chat_template_kwargs": {"enable_thinking": false, "thinking": false}}
+ },
+ "openrouter": {
+  "base_url": "https://openrouter.ai/api/v1/",
+  "auth": {"env": "OPENROUTER_API_KEY"},
+  "key_prefixes": ["sk-or-"],
+  "transport": "chat_ask", "top_k": 20, "max_tokens_field": "max_tokens",
+  "extra": {"reasoning": {"enabled": false}, "temperature": 0}
+ },
+ "openai": {
+  "base_url": "https://api.openai.com/v1/",
+  "auth": {"env": "OPENAI_API_KEY"},
+  "key_prefixes": ["sk-proj-", "sk-svcacct-", "sk-admin-"],
+  "transport": "chat_ask", "top_k": 5, "max_tokens_field": "max_completion_tokens",
+  "extra": {"reasoning_effort": "none"}
+ },
+ "anthropic": {
+  "base_url": "https://api.anthropic.com",
+  "auth": {"env": "ANTHROPIC_API_KEY", "header": "x-api-key", "scheme": ""},
+  "key_prefixes": ["sk-ant-"],
+  "transport": "anthropic"
+ },
+ "mistral": {
+  "base_url": "https://api.mistral.ai/v1/",
+  "auth": {"env": "MISTRAL_API_KEY"},
+  "key_prefixes": [],
+  "transport": "mistral"
+ },
+ "local": {
+  "base_url": "http://127.0.0.1:8000/v1/",
+  "auth": {"mode": "none"},
+  "key_prefixes": [],
+  "transport": "chat_continue", "top_k": 20,
+  "extra": {"chat_template_kwargs": {"enable_thinking": false}}
+ }
+}

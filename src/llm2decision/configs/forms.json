@@ -1,0 +1,5 @@
+{
+ "true": ["true", "yes", "y"],
+ "false": ["false", "no", "n"],
+ "unsure": ["unsure", "uns", "un", "unknown", "unclear", "unc"]
+}

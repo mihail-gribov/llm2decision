@@ -1,0 +1,250 @@
+{
+ "qwen3.8-27b@nebius": {
+  "provider": "nebius",
+  "model": "Qwen/Qwen3.8-27B",
+  "digits": "single",
+  "calibration": {
+   "verdict": 0.94,
+   "three_answers": 1.158,
+   "choice": 1.002,
+   "scale": 1.295,
+   "fitted": "2026-10-07"
+  },
+  "transport": "completions",
+  "tokenizer": "Qwen/Qwen3.8-27B",
+  "template_kwargs": {
+   "enable_thinking": false
+  },
+  "note": "chat drops the assistant prefix for this model: the template is rendered locally",
+  "measured": "2026-10-07",
+  "chat_template": "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n"
+ },
+ "qwen3.5-397b@nebius": {
+  "provider": "nebius",
+  "model": "Qwen/Qwen3.5-397B-A17B",
+  "digits": "single",
+  "calibration": {
+   "verdict": 1.086,
+   "three_answers": 1.545,
+   "choice": 0.91,
+   "scale": 1.449,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "qwen3-235b@nebius": {
+  "provider": "nebius",
+  "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
+  "digits": "single",
+  "calibration": {
+   "verdict": 1.873,
+   "three_answers": 2.665,
+   "choice": 1.139,
+   "scale": 1.843,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "qwen3-30b-a3b@nebius": {
+  "provider": "nebius",
+  "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "digits": "single",
+  "calibration": {
+   "verdict": 6.135,
+   "three_answers": 9.611,
+   "choice": 4.597,
+   "scale": 4.597,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "kimi-k2.6@nebius": {
+  "provider": "nebius",
+  "model": "moonshotai/Kimi-K2.6",
+  "digits": null,
+  "measured": "2026-10-07",
+  "calibration": {
+   "three_answers": 1.757,
+   "fitted": "2026-10-07"
+  }
+ },
+ "deepseek-v4-pro@nebius": {
+  "provider": "nebius",
+  "model": "deepseek-ai/DeepSeek-V4-Pro",
+  "digits": "grouped",
+  "measured": "2026-10-07"
+ },
+ "minimax-m3@nebius": {
+  "provider": "nebius",
+  "model": "MiniMaxAI/MiniMax-M3",
+  "digits": "grouped",
+  "calibration": {
+   "verdict": 0.896,
+   "three_answers": 1.052,
+   "choice": 1.158,
+   "scale": 1.596,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "hermes-4-405b@nebius": {
+  "provider": "nebius",
+  "model": "NousResearch/Hermes-4-405B",
+  "digits": "grouped",
+  "measured": "2026-10-07",
+  "calibration": {
+   "three_answers": 1.545,
+   "fitted": "2026-10-07"
+  }
+ },
+ "nemotron-3-ultra@nebius": {
+  "provider": "nebius",
+  "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+  "digits": "single",
+  "measured": "2026-10-07",
+  "calibration": {
+   "three_answers": 1.674,
+   "fitted": "2026-10-07"
+  }
+ },
+ "nemotron-3-super@nebius": {
+  "provider": "nebius",
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "digits": "single",
+  "calibration": {
+   "verdict": 1.596,
+   "three_answers": 2.54,
+   "choice": 1.57,
+   "scale": 1.497,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "nemotron-3-nano@nebius": {
+  "provider": "nebius",
+  "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "digits": "single",
+  "calibration": {
+   "verdict": 1.404,
+   "three_answers": 1.997,
+   "choice": 1.426,
+   "scale": 1.235,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "nemotron-3.5-lightning@nebius": {
+  "provider": "nebius",
+  "model": "nvidia/Nemotron-3_5-Lightning",
+  "digits": "single",
+  "calibration": {
+   "verdict": 1.497,
+   "three_answers": 5.754,
+   "choice": 1.965,
+   "scale": 1.674,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "gemma-3-27b@nebius": {
+  "provider": "nebius",
+  "model": "google/gemma-3-27b-it",
+  "digits": null,
+  "calibration": {
+   "verdict": 13.458,
+   "three_answers": 30.0,
+   "choice": 9.458,
+   "scale": 8.187,
+   "fitted": "2026-10-07"
+  },
+  "measured": "2026-10-07"
+ },
+ "gpt-oss-120b@nebius": {
+  "provider": "nebius",
+  "model": "openai/gpt-oss-120b",
+  "digits": "grouped",
+  "calibration": {
+   "verdict": 3.732,
+   "three_answers": 5.662,
+   "choice": 2.307,
+   "scale": 3.673,
+   "fitted": "2026-10-07"
+  },
+  "transport": "completions",
+  "tokenizer": "openai/gpt-oss-120b",
+  "suffix": "<|channel|>final<|message|>",
+  "note": "harmony: chat always opens a reasoning channel; the final channel is written here",
+  "measured": "2026-10-07",
+  "chat_template": "<|start|>system<|message|>You are ChatGPT, a large language model trained by OpenAI.\nKnowledge cutoff: 2024-06\nCurrent date: {date}\n\nReasoning: medium\n\n# Valid channels: analysis, commentary, final. Channel must be included for every message.<|end|><|start|>developer<|message|># Instructions\n\n{system}\n\n<|end|><|start|>user<|message|>{user}<|end|><|start|>assistant"
+ },
+ "gpt-5.4@openai": {
+  "provider": "openai",
+  "model": "gpt-5.4",
+  "digits": null,
+  "note": "log-probabilities come back nearly always 0.999+ for one option: read as a text answer",
+  "measured": "2026-10-07",
+  "logprobs": false
+ },
+ "gpt-5.4-mini@openai": {
+  "provider": "openai",
+  "model": "gpt-5.4-mini",
+  "digits": null,
+  "measured": "2026-10-07",
+  "logprobs": false,
+  "note": "log-probabilities come back nearly always 0.999+ for one option: read as a text answer"
+ },
+ "gemini-2.5-flash@openrouter": {
+  "provider": "openrouter",
+  "model": "google/gemini-2.5-flash",
+  "digits": null,
+  "logprobs": false,
+  "note": "no logprobs; Gemini 3.x cannot switch reasoning off",
+  "measured": "2026-10-07"
+ },
+ "claude-haiku-4.5@anthropic": {
+  "provider": "anthropic",
+  "model": "claude-haiku-4-5",
+  "digits": null,
+  "measured": "2026-10-07"
+ },
+ "claude-sonnet-5.5@anthropic": {
+  "provider": "anthropic",
+  "model": "claude-sonnet-5-5",
+  "digits": null,
+  "prefill": false,
+  "temperature": false,
+  "note": "no assistant prefill, no temperature, thinking off only with `between_tools`; on hard tasks it reasons in the text unless told firmly and kept at low effort — such answers are left unread",
+  "extra": {
+   "thinking": {
+    "type": "between_tools"
+   },
+   "output_config": {
+    "effort": "low"
+   }
+  },
+  "ask_format": "\n\nOutput only the line `Answer: [<your answer>]`. Do not write any reasoning, calculation or explanation before or after it."
+ },
+ "claude-haiku-5.5@anthropic": {
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "digits": null,
+  "prefill": false,
+  "temperature": false,
+  "note": "no assistant prefill, no temperature, thinking off; on counting tasks it reasons in the text unless told firmly and kept at low effort",
+  "extra": {
+   "thinking": {
+    "type": "disabled"
+   },
+   "output_config": {
+    "effort": "low"
+   }
+  },
+  "ask_format": "\n\nOutput only the line `Answer: [<your answer>]`. Do not write any reasoning, calculation or explanation before or after it."
+ },
+ "ministral-14b@mistral": {
+  "provider": "mistral",
+  "model": "ministral-14b-latest",
+  "digits": "single",
+  "measured": "2026-10-07"
+ }
+}

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "llm2decision"
+version = "0.1.0"
+description = "Any hosted LLM as a decision model: Jev-shaped noul, tfu, choice and score answers read from the first answer token, with provider and model quirks kept in configuration"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Mikhail Gribov", email = "mihail.gribov.rs@gmail.com" }]
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+keywords = ["llm", "classification", "decision", "logprobs", "calibration", "llm-as-judge", "guardrails"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/mihail-gribov/llm2decision"
+Source = "https://github.com/mihail-gribov/llm2decision"
+Issues = "https://github.com/mihail-gribov/llm2decision/issues"
+
+[project.scripts]
+llm2decision = "llm2decision.__main__:main"
+
+[project.optional-dependencies]
+# Rendering a model's chat template locally: only for a model of your own whose binding has no
+# `chat_template`, through a server that drops an assistant prefix.
+template = ["transformers>=5.0", "jinja2>=3.1"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/llm2decision"]
+artifacts = ["src/llm2decision/configs/*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
