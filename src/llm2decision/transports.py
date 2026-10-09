@@ -1,6 +1,6 @@
 """How a prompt reaches a model and what comes back: the candidates for the next token after `[`.
 
-One operation, five ways to do it:
+One operation, five ways to do it, and a decision API that answers whole questions:
 
   chat_continue  chat with the answer opened by an assistant message the server continues
                  (`continue_final_message`) — vLLM, SGLang, Nebius; top-k log-probabilities
@@ -11,6 +11,7 @@ One operation, five ways to do it:
                  servers that drop an assistant prefix in chat
   anthropic      Messages API, the answer prefilled where the model takes it; text only
   mistral        chat with `prefix: true`; text only
+  jev            TypeSafe's decision API: whole questions in, probabilities out — no token to read
 
 Whatever the way, the result is a `Step`: candidates most probable first, one per token string (servers
 return them unsorted, and the same string twice), how many the provider returns at most, and — for
@@ -312,5 +313,16 @@ class Mistral(TextOnly):
         return Step([], 0, written + text.split("]")[0].strip(), u.get("prompt_tokens", 0), u.get("completion_tokens", 0))
 
 
+class Jev(Transport):
+    """TypeSafe's decision API (`POST /v1/systemone`): the questions of a call go in one request and
+    come back as probabilities, so `step` does not apply."""
+
+    def ask(self, state: str, questions: dict) -> dict:
+        return self.post("systemone", {"model": self.model, "state": state, "questions": questions, **self.extra})
+
+    def step(self, prompt, written):
+        raise TransportError("the Jev API answers whole questions, not tokens")
+
+
 KINDS = {"chat_continue": ChatContinue, "chat_ask": ChatAsk, "completions": Completions,
-         "anthropic": Anthropic, "mistral": Mistral}
+         "anthropic": Anthropic, "mistral": Mistral, "jev": Jev}

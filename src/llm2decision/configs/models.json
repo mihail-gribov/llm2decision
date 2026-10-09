@@ -241,6 +241,11 @@
   },
   "ask_format": "\n\nOutput only the line `Answer: [<your answer>]`. Do not write any reasoning, calculation or explanation before or after it."
  },
+ "jev-1.13.0@typesafe": {
+  "provider": "typesafe",
+  "model": "jev-1.13.0",
+  "note": "TypeSafe's own decision model through its API; it calibrates its probabilities itself"
+ },
  "ministral-14b@mistral": {
   "provider": "mistral",
   "model": "ministral-14b-latest",

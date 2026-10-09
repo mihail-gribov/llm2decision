@@ -102,11 +102,14 @@ def run(client, save: bool = False) -> CheckReport:
     reasoning = sum(a.meta.reasoning_tokens or 0 for a in answers.values())
     add(Point("reasoning", reasoning == 0, "none reported" if reasoning == 0 else f"{reasoning} tokens reported"))
 
-    if not by_logprobs:
+    if b.transport == "jev":
+        add(Point("logprobs", None, "a decision API: the probabilities are its own"))
+    elif not by_logprobs:
         add(Point("logprobs", None, "read from text: probabilities are 1 and 0"))
     else:
         _first_token(client, rep)
-    _digits(client, rep, by_logprobs)
+    if b.transport != "jev":
+        _digits(client, rep, by_logprobs)
 
     if rep.ok:
         today = dt.date.today().isoformat()

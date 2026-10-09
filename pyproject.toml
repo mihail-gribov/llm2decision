@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "llm2decision"
-version = "0.1.0"
+version = "0.1.1"
 description = "Turn any LLM into a decision model: a probability for each predefined option of a question about a text, through a Jev-compatible API"
 readme = "README.md"
 requires-python = ">=3.10"

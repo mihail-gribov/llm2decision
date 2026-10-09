@@ -21,13 +21,14 @@ Qwen3.8-27B in a chat:
   likely requires customer service intervention, such as a repair or replacement.
 
 The same model through llm2decision:
-  0.97   (the probability of "yes")
+  0.96   (the probability of "yes")
 ```
 
 - **Your choice of model.** Use the models you already have access to, or the one that does best
   on your tasks: large or small, through an API (Nebius, OpenAI, Anthropic, OpenRouter, Mistral)
-  or on your own server (vLLM, SGLang, llama.cpp, Ollama). The code stays the same, and switching
-  is one string. Code written for TypeSafe Jev moves over by changing the import.
+  or on your own server (vLLM, SGLang, llama.cpp, Ollama), or TypeSafe's Jev decision model. The
+  code stays the same, and switching is one string. Code written for the Jev SDK moves over by
+  changing the import.
 - **Chosen on your own questions.** `llm2decision bench` runs a file of your questions through any
   model and reports accuracy, undecided answers and calibration, so you compare candidates on
   your task.
@@ -55,11 +56,12 @@ document = "I love the headphones, but the left ear cushion already came off aft
 questions = {"complaint": l2d.Noul(instructions="Is the customer complaining?")}
 answers = client.system_one(document, questions)
 
-print(answers.nouls["complaint"].noul)   # the probability of "yes": 0.97
+print(answers.nouls["complaint"].noul)   # the probability of "yes": 0.96
 ```
 
 `Noul` is a yes/no question; section 3 lists the other types. The numbers in the examples come
-from real runs: a rerun can differ in the second decimal, and another model gives other numbers.
+from real runs: a rerun can give slightly different probabilities, and another model gives other
+numbers.
 
 ## 1. Connect
 
@@ -73,6 +75,7 @@ l2d.DecisionClient("qwen3.8-27b@nebius")                                   # a t
 l2d.DecisionClient("qwen3.8-27b")                                          # the same, when the name is unique
 l2d.DecisionClient("google/gemini-2.5-flash", provider="openrouter")       # any model of a provider
 l2d.DecisionClient("Qwen/Qwen3-8B", base_url="http://localhost:8000/v1")   # your own server, no key
+l2d.DecisionClient("jev-1.13.0@typesafe")                                  # TypeSafe's Jev
 ```
 
 | provider | `provider=` | key variable | answers |
@@ -83,6 +86,7 @@ l2d.DecisionClient("Qwen/Qwen3-8B", base_url="http://localhost:8000/v1")   # you
 | OpenAI | `"openai"` | `OPENAI_API_KEY` | text |
 | Anthropic | `"anthropic"` | `ANTHROPIC_API_KEY` | text |
 | Mistral | `"mistral"` | `MISTRAL_API_KEY` | text |
+| TypeSafe (Jev) | `"typesafe"` | `TYPESAFE_API_KEY` | with Jev's own probabilities; all questions of a call in one request |
 
 Keys: the provider's variable, `api_key=` (a string or a function), `key_env=` or `env_file=`.
 
@@ -162,7 +166,7 @@ document = "The parcel came a week late and the box was dented, but everything i
 questions = {"satisfied": l2d.Tfu(instructions="Is the customer satisfied with the order?")}
 
 client.system_one(document, questions).tfus["satisfied"].probabilities
-# {"true": 0.082, "false": 0.107, "unknown": 0.811}
+# {"true": 0.065, "false": 0.086, "unknown": 0.849}
 ```
 
 `criteria` are optional for yes/no questions; write them when "yes" needs defining. For a `Choice`,

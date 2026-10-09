@@ -17,4 +17,4 @@ from .types import (Answer, Choice, ChoiceAnswer, Meta, Noul, NoulAnswer, Score,
 __all__ = ["DecisionClient", "AsyncDecisionClient", "list_models", "ModelInfo", "Noul", "Tfu", "Choice", "Score", "NoulAnswer", "TfuAnswer", "ChoiceAnswer",
            "ScoreAnswer", "Answer", "SystemOneResponse", "Usage", "Meta", "LLM2DecisionError", "QuestionError",
            "ConfigError", "AuthError", "TransportError", "UnreadableAnswer", "LLM2DecisionWarning", "bindings", "providers", "Marks", "MarksError", "assign", "read"]
-__version__ = "0.1.0"
+__version__ = "0.1.1"

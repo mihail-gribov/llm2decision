@@ -29,7 +29,7 @@ from .config import Binding, providers, resolve
 from .config import forms as config_forms
 from .errors import ConfigError, LLM2DecisionError, MarksError, QuestionError, TransportError, UnreadableAnswer
 from .marks import normalise, read, read_text
-from .prompt import Prompt, build
+from .prompt import YESNO_DEFAULT, YESNO_UNSURE, Prompt, build
 from .transports import CALL, KINDS, CallOptions, Step, Transport
 from .types import (Choice, ChoiceAnswer, Meta, Noul, NoulAnswer, Score, ScoreAnswer, SystemOneResponse, Tfu,
                     TfuAnswer, Usage, as_text, coerce)
@@ -101,6 +101,8 @@ class DecisionClient:
         if not questions:
             raise ValueError("no questions")
         qs = {k: coerce(k, q) for k, q in questions.items()}
+        if self.binding.transport == "jev":
+            return self._jev(state, qs, CallOptions(timeout, dict(extra_headers or {}), dict(extra_body or {})))
         prompts = {}
         for k, q in qs.items():                       # every prompt before the first request: a bad question
             try:                                      # fails the call without spending anything
@@ -253,12 +255,70 @@ class DecisionClient:
         return ScoreAnswer(score=sum(i * v for i, v in probs.items()), confidence=p[lead],
                            legend={i: d for i, d in enumerate(q.criteria)}, probabilities=probs, meta=meta)
 
+    # -- a decision API --------------------------------------------------------------------------
+
+    def _jev(self, state, qs: dict, call: CallOptions) -> SystemOneResponse:
+        """All questions in one request to the Jev API; its probabilities as they come (it calibrates
+        them itself). A one-option choice or score is answered here, without a request."""
+        answers = {k: self._single(q) for k, q in qs.items() if isinstance(q, (Choice, Score)) and len(q.criteria) == 1}
+        ask = {k: jev_question(k, q) for k, q in qs.items() if k not in answers}
+        tin = tout = 0
+        if ask:
+            token = CALL.set(call)
+            try:
+                data = self.transport.ask(as_text(state), ask)
+            finally:
+                CALL.reset(token)
+            try:
+                for k in ask:
+                    answers[k] = self._from_jev(qs[k], data["answers"][k])
+                u = data.get("usage") or {}
+                tin, tout = int(u.get("input_tokens") or 0), int(u.get("output_tokens") or 0)
+            except (KeyError, IndexError, TypeError, AttributeError, ValueError) as e:
+                raise TransportError(f"the Jev response has an unexpected shape ({type(e).__name__}: "
+                                     f"{str(e)[:120]})") from e
+        return SystemOneResponse(model=self.binding.name, usage=Usage(tin, tout),
+                                 answers={k: answers[k] for k in qs})
+
+    def _from_jev(self, q, a: Mapping):
+        meta = Meta(calibrated=False, requests=1, checked=self.binding.checked is not None)
+        if isinstance(q, Noul):
+            return NoulAnswer(noul=float(a["noul"]), meta=meta)
+        p = {str(k): float(v) for k, v in a["probabilities"].items()}
+        lead = max(p, key=p.get)
+        if isinstance(q, Tfu):
+            return TfuAnswer(tfu=lead, probabilities={k: p[k] for k in ("true", "false", "unknown")},
+                             confidence=p[lead], meta=meta)
+        if isinstance(q, Choice):
+            return ChoiceAnswer(choice=lead, confidence=p[lead], probabilities=p, meta=meta)
+        probs = {int(k): v for k, v in p.items()}
+        return ScoreAnswer(score=sum(i * v for i, v in probs.items()), confidence=p[lead],
+                           legend={i: d for i, d in enumerate(q.criteria)}, probabilities=probs, meta=meta)
+
     def _single(self, q):
         meta = Meta(logprobs=False, requests=0, checked=self.binding.checked is not None)
         if isinstance(q, Choice):
             label = next(iter(q.criteria))
             return ChoiceAnswer(choice=label, confidence=1.0, probabilities={label: 1.0}, meta=meta)
         return ScoreAnswer(score=0.0, confidence=1.0, legend={0: q.criteria[0]}, probabilities={0: 1.0}, meta=meta)
+
+
+def jev_question(key: str, q) -> dict:
+    """A question in the Jev API's form. Jev has no true/false/unknown type: a `Tfu` goes as a choice over
+    its three outcomes, worded as the package words them when the question leaves them out."""
+    if isinstance(q, Tfu):
+        c = dict(q.criteria or {})
+        crit = {"true": c.get("true") or YESNO_DEFAULT["true"], "false": c.get("false") or YESNO_DEFAULT["false"],
+                "unknown": c.get("unknown") or YESNO_UNSURE}
+        out = {"type": "choice", "criteria": crit}
+    else:
+        if isinstance(q, Noul) and not q.instructions and not q.criteria:
+            raise QuestionError(key, "a yes/no question for Jev needs instructions or criteria")
+        out = {"type": q.type, **({"criteria": dict(q.criteria) if isinstance(q, (Noul, Choice)) else list(q.criteria)}
+                                  if q.criteria is not None else {})}
+    if q.instructions is not None:
+        out["instructions"] = q.instructions
+    return out
 
 
 class AsyncDecisionClient:

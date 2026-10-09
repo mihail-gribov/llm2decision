@@ -32,6 +32,12 @@
   "key_prefixes": [],
   "transport": "mistral"
  },
+ "typesafe": {
+  "base_url": "https://api.typesafe.ai/v1/",
+  "auth": {"env": "TYPESAFE_API_KEY"},
+  "key_prefixes": [],
+  "transport": "jev"
+ },
  "local": {
   "base_url": "http://127.0.0.1:8000/v1/",
   "auth": {"mode": "none"},
