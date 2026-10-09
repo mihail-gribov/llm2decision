@@ -24,18 +24,19 @@ The same model through llm2decision:
   0.97   (the probability of "yes")
 ```
 
-- **Your choice of model.** Use the model that does best on your tasks: large or small, through an
-  API (Nebius, OpenAI, Anthropic, OpenRouter, Mistral) or on your own server (vLLM, SGLang,
-  llama.cpp, Ollama). The code stays the same, and switching is one string. Code written for
-  TypeSafe Jev moves over by changing the import.
+- **Your choice of model.** Use the models you already have access to, or the one that does best
+  on your tasks: large or small, through an API (Nebius, OpenAI, Anthropic, OpenRouter, Mistral)
+  or on your own server (vLLM, SGLang, llama.cpp, Ollama). The code stays the same, and switching
+  is one string. Code written for TypeSafe Jev moves over by changing the import.
+- **Chosen on your own questions.** `llm2decision bench` runs a file of your questions through any
+  model and reports accuracy, undecided answers and calibration, so you compare candidates on
+  your task.
 - **Probabilities you can set thresholds on.** Where the provider returns token probabilities, they
   are calibrated per model, so an answer given with 0.9 is right about 90% of the time. Act on
   confident answers and send the rest to a person.
 - **Nothing to parse.** The answer is always one of your options, or explicitly marked undecided.
-- **Cheap.** Output tokens cost several times more than input ones, and the model writes a token or
-  a few instead of an explanation, so you pay mostly for the cheaper input.
 - **Measured.** Every tested model has its accuracy, undecided share and calibration error on the
-  same 3 358 questions (section 4), and one command measures your own.
+  same 3 358 questions (section 4), a common reference for your candidates.
 - **Zero required dependencies**, only the standard library of Python 3.10+.
 
 ## Quick start
@@ -113,6 +114,8 @@ llm2decision bench Qwen/Qwen3-8B --base-url http://localhost:8000/v1
 It asks the 3 358 questions one by one (on a hosted model, at your provider's prices; `--limit`
 takes the first N), saves the answers as they come, continues where it stopped when run again, and
 prints accuracy by question type, the share of undecided questions and the calibration error.
+`--data my_questions.jsonl` runs your own questions instead, written in the same format as
+Decision Questions.
 
 ## 3. Ask questions
 

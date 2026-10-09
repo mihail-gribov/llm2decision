@@ -26,27 +26,29 @@ An answer is right when its most probable option is the correct one. A reply tha
 allowed answers counts as undecided; both ability and accuracy, over all 3 358 questions, leave
 undecided questions out.
 
-| system | ability | accuracy | undecided | measured through |
-|---|---|---|---|---|
-| `qwen3.8-27b@nebius` | +5.39 ± 0.18 | 0.913 | 0.8% | llm2decision |
-| `gpt-5.4@openai` | +5.26 ± 0.15 | 0.936 | 1.4% | llm2decision |
-| `kimi-k2.6@nebius` | +5.24 ± 0.17 | 0.917 | 1.1% | llm2decision |
-| `qwen3.5-397b@nebius` | +5.23 ± 0.20 | 0.907 | 0.8% | llm2decision |
-| `deepseek-v4-pro@nebius` | +5.04 ± 0.19 | 0.912 | 1.5% | llm2decision |
-| `claude-haiku-4.5@anthropic` | +4.82 ± 0.15 | 0.905 | 1.7% | llm2decision |
-| `claude-sonnet-5.5@anthropic` | +4.71 ± 0.13 | 0.948 | 5.7% | llm2decision |
-| `claude-haiku-5.5@anthropic` | +4.68 ± 0.12 | 0.915 | 5.7% | llm2decision |
-| `jev-1.13.0` | +4.66 ± 0.15 | 0.920 | 0.0% | its own API |
-| `nemotron-3-ultra@nebius` | +4.63 ± 0.16 | 0.901 | 0.8% | llm2decision |
-| `gemini-2.5-flash@openrouter` | +4.29 ± 0.12 | 0.896 | 1.0% | llm2decision |
-| `minimax-m3@nebius` | +4.25 ± 0.12 | 0.912 | 1.7% | llm2decision |
-| `hermes-4-405b@nebius` | +3.80 ± 0.10 | 0.888 | 0.4% | llm2decision |
-| `qwen3-235b@nebius` | +3.61 ± 0.09 | 0.884 | 0.8% | llm2decision |
-| `gpt-5.4-mini@openai` | +3.51 ± 0.10 | 0.875 | 0.5% | llm2decision |
-| `nemotron-3-super@nebius` | +2.76 ± 0.08 | 0.842 | 0.2% | llm2decision |
-| `ministral-14b@mistral` | +2.44 ± 0.07 | 0.836 | 0.7% | llm2decision |
-| `gpt-oss-120b@nebius` | +2.36 ± 0.07 | 0.830 | 0.7% | llm2decision |
-| `qwen3-30b-a3b@nebius` | +2.17 ± 0.07 | 0.833 | 0.5% | llm2decision |
-| `gemma-3-27b@nebius` | +1.88 ± 0.06 | 0.818 | 0.4% | llm2decision |
-| `nemotron-3.5-lightning@nebius` | +0.48 ± 0.06 | 0.734 | 0.1% | llm2decision |
-| `nemotron-3-nano@nebius` | +0.46 ± 0.08 | 0.756 | 1.1% | llm2decision |
+| system | ability | accuracy | undecided | input, $ per 1M tokens | measured through |
+|---|---|---|---|---|---|
+| `qwen3.8-27b@nebius` | +5.39 ± 0.18 | 0.913 | 0.8% | 0.45 | llm2decision |
+| `gpt-5.4@openai` | +5.26 ± 0.15 | 0.936 | 1.4% | 2.50 | llm2decision |
+| `kimi-k2.6@nebius` | +5.24 ± 0.17 | 0.917 | 1.1% | 0.95 | llm2decision |
+| `qwen3.5-397b@nebius` | +5.23 ± 0.20 | 0.907 | 0.8% | 0.60 | llm2decision |
+| `deepseek-v4-pro@nebius` | +5.04 ± 0.19 | 0.912 | 1.5% | 1.75 | llm2decision |
+| `claude-haiku-4.5@anthropic` | +4.82 ± 0.15 | 0.905 | 1.7% | 1.00 | llm2decision |
+| `claude-sonnet-5.5@anthropic` | +4.71 ± 0.13 | 0.948 | 5.7% | 2.00 | llm2decision |
+| `claude-haiku-5.5@anthropic` | +4.68 ± 0.12 | 0.915 | 5.7% | 0.10 | llm2decision |
+| `jev-1.13.0` | +4.66 ± 0.15 | 0.920 | 0.0% | 0.042 | its own API |
+| `nemotron-3-ultra@nebius` | +4.63 ± 0.16 | 0.901 | 0.8% | 1.00 | llm2decision |
+| `gemini-2.5-flash@openrouter` | +4.29 ± 0.12 | 0.896 | 1.0% | 0.30 | llm2decision |
+| `minimax-m3@nebius` | +4.25 ± 0.12 | 0.912 | 1.7% | 0.30 | llm2decision |
+| `hermes-4-405b@nebius` | +3.80 ± 0.10 | 0.888 | 0.4% | 1.00 | llm2decision |
+| `qwen3-235b@nebius` | +3.61 ± 0.09 | 0.884 | 0.8% | 0.20 | llm2decision |
+| `gpt-5.4-mini@openai` | +3.51 ± 0.10 | 0.875 | 0.5% | 0.75 | llm2decision |
+| `nemotron-3-super@nebius` | +2.76 ± 0.08 | 0.842 | 0.2% | 0.30 | llm2decision |
+| `ministral-14b@mistral` | +2.44 ± 0.07 | 0.836 | 0.7% | 0.20 | llm2decision |
+| `gpt-oss-120b@nebius` | +2.36 ± 0.07 | 0.830 | 0.7% | 0.15 | llm2decision |
+| `qwen3-30b-a3b@nebius` | +2.17 ± 0.07 | 0.833 | 0.5% | 0.10 | llm2decision |
+| `gemma-3-27b@nebius` | +1.88 ± 0.06 | 0.818 | 0.4% | 0.10 | llm2decision |
+| `nemotron-3.5-lightning@nebius` | +0.48 ± 0.06 | 0.734 | 0.1% | 0.06 | llm2decision |
+| `nemotron-3-nano@nebius` | +0.46 ± 0.08 | 0.756 | 1.1% | 0.06 | llm2decision |
+
+Input prices are the providers' list prices of October 2026; output is a token or a few per question.
