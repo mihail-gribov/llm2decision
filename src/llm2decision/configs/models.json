@@ -4,11 +4,11 @@
   "model": "Qwen/Qwen3.8-27B",
   "digits": "single",
   "calibration": {
-   "verdict": 0.94,
-   "three_answers": 1.158,
-   "choice": 1.002,
+   "verdict": 0.814,
+   "three_answers": 0.925,
+   "choice": 0.94,
    "scale": 1.295,
-   "fitted": "2026-10-07"
+   "fitted": "2026-10-08"
   },
   "transport": "completions",
   "tokenizer": "Qwen/Qwen3.8-27B",
@@ -24,11 +24,11 @@
   "model": "Qwen/Qwen3.5-397B-A17B",
   "digits": "single",
   "calibration": {
-   "verdict": 1.086,
-   "three_answers": 1.545,
-   "choice": 0.91,
+   "verdict": 0.925,
+   "three_answers": 1.295,
+   "choice": 0.868,
    "scale": 1.449,
-   "fitted": "2026-10-07"
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -37,11 +37,11 @@
   "model": "Qwen/Qwen3-235B-A22B-Instruct-2507",
   "digits": "single",
   "calibration": {
-   "verdict": 1.873,
-   "three_answers": 2.665,
-   "choice": 1.139,
-   "scale": 1.843,
-   "fitted": "2026-10-07"
+   "verdict": 1.701,
+   "three_answers": 2.199,
+   "choice": 1.121,
+   "scale": 1.873,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -50,11 +50,11 @@
   "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
   "digits": "single",
   "calibration": {
-   "verdict": 6.135,
-   "three_answers": 9.611,
-   "choice": 4.597,
-   "scale": 4.597,
-   "fitted": "2026-10-07"
+   "verdict": 5.572,
+   "three_answers": 8.729,
+   "choice": 4.747,
+   "scale": 4.981,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -64,8 +64,8 @@
   "digits": null,
   "measured": "2026-10-07",
   "calibration": {
-   "three_answers": 1.757,
-   "fitted": "2026-10-07"
+   "three_answers": 1.449,
+   "fitted": "2026-10-08"
   }
  },
  "deepseek-v4-pro@nebius": {
@@ -79,11 +79,11 @@
   "model": "MiniMaxAI/MiniMax-M3",
   "digits": "grouped",
   "calibration": {
-   "verdict": 0.896,
-   "three_answers": 1.052,
-   "choice": 1.158,
-   "scale": 1.596,
-   "fitted": "2026-10-07"
+   "verdict": 0.776,
+   "three_answers": 0.868,
+   "choice": 1.139,
+   "scale": 1.497,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -93,8 +93,8 @@
   "digits": "grouped",
   "measured": "2026-10-07",
   "calibration": {
-   "three_answers": 1.545,
-   "fitted": "2026-10-07"
+   "three_answers": 1.275,
+   "fitted": "2026-10-08"
   }
  },
  "nemotron-3-ultra@nebius": {
@@ -103,8 +103,8 @@
   "digits": "single",
   "measured": "2026-10-07",
   "calibration": {
-   "three_answers": 1.674,
-   "fitted": "2026-10-07"
+   "three_answers": 1.426,
+   "fitted": "2026-10-08"
   }
  },
  "nemotron-3-super@nebius": {
@@ -112,11 +112,11 @@
   "model": "nvidia/nemotron-3-super-120b-a12b",
   "digits": "single",
   "calibration": {
-   "verdict": 1.596,
-   "three_answers": 2.54,
-   "choice": 1.57,
-   "scale": 1.497,
-   "fitted": "2026-10-07"
+   "verdict": 1.473,
+   "three_answers": 2.096,
+   "choice": 1.545,
+   "scale": 1.449,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -126,10 +126,10 @@
   "digits": "single",
   "calibration": {
    "verdict": 1.404,
-   "three_answers": 1.997,
+   "three_answers": 2.062,
    "choice": 1.426,
-   "scale": 1.235,
-   "fitted": "2026-10-07"
+   "scale": 1.338,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -138,11 +138,11 @@
   "model": "nvidia/Nemotron-3_5-Lightning",
   "digits": "single",
   "calibration": {
-   "verdict": 1.497,
-   "three_answers": 5.754,
-   "choice": 1.965,
-   "scale": 1.674,
-   "fitted": "2026-10-07"
+   "verdict": 1.449,
+   "three_answers": 4.901,
+   "choice": 1.997,
+   "scale": 1.729,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -151,11 +151,11 @@
   "model": "google/gemma-3-27b-it",
   "digits": null,
   "calibration": {
-   "verdict": 13.458,
+   "verdict": 12.622,
    "three_answers": 30.0,
-   "choice": 9.458,
-   "scale": 8.187,
-   "fitted": "2026-10-07"
+   "choice": 9.766,
+   "scale": 7.929,
+   "fitted": "2026-10-08"
   },
   "measured": "2026-10-07"
  },
@@ -164,11 +164,11 @@
   "model": "openai/gpt-oss-120b",
   "digits": "grouped",
   "calibration": {
-   "verdict": 3.732,
-   "three_answers": 5.662,
-   "choice": 2.307,
-   "scale": 3.673,
-   "fitted": "2026-10-07"
+   "verdict": 3.557,
+   "three_answers": 5.143,
+   "choice": 2.344,
+   "scale": 3.557,
+   "fitted": "2026-10-08"
   },
   "transport": "completions",
   "tokenizer": "openai/gpt-oss-120b",

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "llm2decision"
 version = "0.1.0"
-description = "Any hosted LLM as a decision model: Jev-shaped noul, tfu, choice and score answers read from the first answer token, with provider and model quirks kept in configuration"
+description = "Turn any LLM into a decision model: a probability for each predefined option of a question about a text, through a Jev-compatible API"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{ name = "Mikhail Gribov", email = "mihail.gribov.rs@gmail.com" }]
@@ -48,3 +48,6 @@ artifacts = ["src/llm2decision/configs/*.json"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+
+[tool.hatch.build.targets.sdist]
+exclude = ["benchmark"]

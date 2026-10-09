@@ -1,13 +1,13 @@
 """`DecisionClient`: a hosted LLM answering Jev-shaped questions, used like the TypeSafe SDK's client.
 
-    from llm2decision import DecisionClient, Noul, Choice, Score
+    import llm2decision as l2d
 
-    with DecisionClient("qwen3.8-27b@nebius") as client:            # a known binding
-        r = client.system_one(state, {"team": Choice(criteria={...}), "billing": Noul(instructions="…")})
+    with l2d.DecisionClient("qwen3.8-27b@nebius") as client:        # a known binding
+        r = client.system_one(state, {"team": l2d.Choice(criteria={...}), "billing": l2d.Noul(instructions="…")})
         r.choices["team"].choice, r.nouls["billing"].noul
 
-    DecisionClient(model="Qwen/Qwen3-8B", base_url="http://localhost:8000/v1")   # any OpenAI-compatible server
-    DecisionClient(model="google/gemini-2.5-flash", provider="openrouter")      # any model of a known provider
+    l2d.DecisionClient(model="Qwen/Qwen3-8B", base_url="http://localhost:8000/v1")   # any OpenAI-compatible server
+    l2d.DecisionClient(model="google/gemini-2.5-flash", provider="openrouter")      # any model of a known provider
 
 One request a question (more when an answer spans tokens). A yes/no answer is the probability of
 its side summed over the side's forms; a choice or a score is read through marks (`marks.py`).

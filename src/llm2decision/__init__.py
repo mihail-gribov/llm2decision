@@ -1,9 +1,9 @@
 """Any hosted LLM as a decision model, used like the TypeSafe (Jev) SDK.
 
-    from llm2decision import DecisionClient, Noul, Choice, Score
+    import llm2decision as l2d
 
-    with DecisionClient("qwen3.8-27b@nebius") as client:
-        r = client.system_one(state, {"team": Choice(criteria={"billing": "…", "other": None})})
+    with l2d.DecisionClient("qwen3.8-27b@nebius") as client:
+        r = client.system_one(state, {"team": l2d.Choice(criteria={"billing": "…", "other": None})})
         r.choices["team"].choice
 """
 from .client import AsyncDecisionClient, DecisionClient

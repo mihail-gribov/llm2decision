@@ -48,7 +48,7 @@ def test_calibration_removed_with_null(home):
 
 def test_fitted_is_kept_apart_from_temperatures():
     b = config.resolve("qwen3.8-27b@nebius")
-    assert "fitted" not in b.calibration and b.fitted == "2026-10-07"
+    assert "fitted" not in b.calibration and b.fitted == "2026-10-08"
 
 
 @pytest.mark.parametrize("cal", [{"verdict": 0}, {"verdict": "hot"}, {"vibes": 1.0}])
