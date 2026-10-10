@@ -1,8 +1,8 @@
 # llm2decision
 
 [![tests](https://github.com/mihail-gribov/llm2decision/actions/workflows/tests.yml/badge.svg)](https://github.com/mihail-gribov/llm2decision/actions/workflows/tests.yml)
-[![PyPI](https://img.shields.io/pypi/v/llm2decision)](https://pypi.org/project/llm2decision/)
-[![Python](https://img.shields.io/pypi/pyversions/llm2decision)](https://pypi.org/project/llm2decision/)
+[![PyPI](https://img.shields.io/pypi/v/llm2decision?cacheSeconds=3600)](https://pypi.org/project/llm2decision/)
+[![Python](https://img.shields.io/pypi/pyversions/llm2decision?cacheSeconds=3600)](https://pypi.org/project/llm2decision/)
 [![required dependencies](https://img.shields.io/badge/required%20dependencies-0-brightgreen)](https://github.com/mihail-gribov/llm2decision/blob/main/pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](https://github.com/mihail-gribov/llm2decision/blob/main/LICENSE)
 
